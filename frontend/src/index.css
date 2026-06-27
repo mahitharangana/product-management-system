@@ -682,10 +682,10 @@ a {
   justify-content: center;
   gap: 5px;
   padding: 7px 12px;
-  background: var(--edit-bg);
-  border: 1px solid var(--edit-border);
+  background: transparent;
+  border: 1px solid var(--border-card);
   border-radius: var(--radius-sm);
-  color: #92400E;
+  color: var(--text-primary);
   font-family: var(--font-family);
   font-size: 0.82rem;
   font-weight: 600;
@@ -694,8 +694,8 @@ a {
 }
 
 .btn-edit:hover {
-  background: #FDE68A;
-  border-color: #F59E0B;
+  background: var(--bg-secondary);
+  border-color: var(--text-muted);
   transform: translateY(-1px);
 }
 
@@ -706,10 +706,10 @@ a {
   justify-content: center;
   gap: 5px;
   padding: 7px 12px;
-  background: var(--danger-bg);
-  border: 1px solid var(--danger-border);
+  background: transparent;
+  border: 1px solid var(--border-card);
   border-radius: var(--radius-sm);
-  color: #991B1B;
+  color: var(--text-secondary);
   font-family: var(--font-family);
   font-size: 0.82rem;
   font-weight: 600;
@@ -718,8 +718,8 @@ a {
 }
 
 .btn-delete:hover {
-  background: #FECACA;
-  border-color: var(--danger);
+  background: var(--bg-secondary);
+  border-color: var(--text-muted);
   transform: translateY(-1px);
 }
 
