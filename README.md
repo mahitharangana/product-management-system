@@ -158,6 +158,9 @@ Base URL: `http://localhost:5000/api/products`
 ### Edit Product Page
 ![Edit Product Page](screenshots/edit.png)
 
+### Product Card Information(Individual)
+![Info Product Page](screenshots/productindividualpage.png)
+
 ---
 
 ## Author
