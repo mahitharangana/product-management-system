@@ -67,28 +67,6 @@ function Home({ onCountChange }) {
     return matchesSearch && matchesCategory;
   });
 
-  // Export to CSV
-  const exportCSV = () => {
-    const headers = ["Name", "Category", "Price (INR)", "Stock", "Description", "Image URL"];
-    const escape = (s) => `"${String(s || "").replace(/"/g, '""')}"`;
-    const rows = products.map((p) => [
-      escape(p.name), escape(p.category || "Others"),
-      p.price || 0, p.stock || 0,
-      escape(p.description), escape(p.imageUrl || ""),
-    ]);
-    const csv = [headers.join(","), ...rows.map((r) => r.join(","))].join("\n");
-    // Add BOM (\uFEFF) so Excel opens UTF-8 correctly
-    const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8;" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `products_${new Date().toISOString().slice(0, 10)}.csv`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-    showToast(`Exported ${products.length} products to CSV.`, "success");
-  };
 
   return (
     <div className="page-container">
@@ -140,16 +118,7 @@ function Home({ onCountChange }) {
         <div className="total-badge">
           Total: <span>{products.length}</span>
         </div>
-        {!loading && !error && products.length > 0 && (
-          <button className="btn-export" onClick={exportCSV} title="Export all products to CSV">
-            <svg width="15" height="15" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" fill="none">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-              <polyline points="7 10 12 15 17 10" />
-              <line x1="12" y1="15" x2="12" y2="3" />
-            </svg>
-            Export CSV
-          </button>
-        )}
+
         <Link to="/add-product" className="btn-primary" id="add-product-btn">
           <svg width="16" height="16" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" fill="none">
             <line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" />

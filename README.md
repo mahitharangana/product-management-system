@@ -1,6 +1,6 @@
 # Product Management System
 
-A full-stack MERN (MongoDB, Express, React, Node.js) web application for managing product inventory. Built with a clean, modern UI featuring dark mode, category filtering, stock tracking, and CSV export.
+A full-stack MERN (MongoDB, Express, React, Node.js) web application for managing product inventory. Built with a clean, modern UI featuring dark mode, category filtering, and stock tracking.
 
 ---
 
@@ -28,7 +28,6 @@ This project is a comprehensive Product Management System built to demonstrate f
 - **Live Search**: Filter products by name or description in real-time.
 - **Category Tabs**: Filter inventory by Smartphones, Laptops, Audio, Wearables, Tablets, and Others.
 - **Stock Management**: Dynamic badges indicating In Stock, Low Stock, or Out of Stock with exact unit counts.
-- **CSV Export**: Download all current products as a spreadsheet in one click.
 - **Dark Mode**: System-wide dark mode toggle, saved locally for persistence.
 - **Toast Notifications**: Real-time success and error feedback for user actions.
 
@@ -163,4 +162,4 @@ Base URL: `http://localhost:5000/api/products`
 
 ## Author
 
-Developed by Mahith Arangana.
+Developed by Mahitha Rangana.
