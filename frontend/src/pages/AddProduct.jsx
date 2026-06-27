@@ -13,12 +13,13 @@ function AddProduct({ onProductAdded }) {
     setTimeout(() => setToast(null), 3000);
   };
 
-  const handleSubmit = async ({ name, price, description }) => {
+  // ✅ FIX: destructure ALL fields including category, stock, imageUrl
+  const handleSubmit = async ({ name, price, description, category, stock, imageUrl }) => {
     setSubmitting(true);
     try {
-      await addProduct({ name, price, description });
+      await addProduct({ name, price, description, category, stock, imageUrl });
       if (onProductAdded) onProductAdded();
-      showToast("✅ Product Added Successfully", "success");
+      showToast("Product added successfully!", "success");
       setTimeout(() => navigate("/"), 1200);
     } catch {
       showToast("Failed to add product. Please try again.", "error");
@@ -29,7 +30,6 @@ function AddProduct({ onProductAdded }) {
 
   return (
     <div className="page-container">
-      {/* Toast */}
       {toast && (
         <div className="toast-container" aria-live="polite">
           <div className={`toast toast-${toast.type}`}>
@@ -61,7 +61,6 @@ function AddProduct({ onProductAdded }) {
         <div className="form-card">
           <h1 className="form-card-title">Add Product</h1>
           <p className="form-card-subtitle">Fill in the details to add a new product.</p>
-
           <ProductForm
             onSubmit={handleSubmit}
             submitLabel="Add Product"

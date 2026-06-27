@@ -31,12 +31,13 @@ function EditProduct({ onProductUpdated }) {
     setTimeout(() => setToast(null), 3000);
   };
 
-  const handleSubmit = async ({ name, price, description }) => {
+  // ✅ FIX: destructure ALL fields including category, stock, imageUrl
+  const handleSubmit = async ({ name, price, description, category, stock, imageUrl }) => {
     setSubmitting(true);
     try {
-      await updateProduct(id, { name, price, description });
+      await updateProduct(id, { name, price, description, category, stock, imageUrl });
       if (onProductUpdated) onProductUpdated();
-      showToast("✅ Product Updated Successfully", "success");
+      showToast("Product updated successfully!", "success");
       setTimeout(() => navigate("/"), 1200);
     } catch {
       showToast("Failed to update product. Please try again.", "error");
@@ -47,7 +48,6 @@ function EditProduct({ onProductUpdated }) {
 
   return (
     <div className="page-container">
-      {/* Toast */}
       {toast && (
         <div className="toast-container" aria-live="polite">
           <div className={`toast toast-${toast.type}`}>
@@ -81,11 +81,10 @@ function EditProduct({ onProductUpdated }) {
           <p className="form-card-subtitle">Update the details below and save your changes.</p>
 
           {loading ? (
-            <div style={{ padding: "2rem 0" }}>
-              <div className="skeleton-line skeleton-title shimmer" style={{ marginBottom: "1rem" }} />
-              <div className="skeleton-line shimmer" style={{ marginBottom: "0.75rem" }} />
-              <div className="skeleton-line shimmer" style={{ marginBottom: "0.75rem" }} />
-              <div className="skeleton-line skeleton-price shimmer" />
+            <div style={{ padding: "2rem 0", display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+              {[80, 100, 60, 100, 40, 100].map((w, i) => (
+                <div key={i} className="shimmer" style={{ height: "18px", width: `${w}%`, borderRadius: "4px" }} />
+              ))}
             </div>
           ) : loadError ? (
             <div className="error-state" role="alert">
